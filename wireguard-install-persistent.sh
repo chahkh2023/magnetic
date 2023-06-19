@@ -363,14 +363,14 @@ PublicKey = ${SERVER_PUB_KEY}
 PresharedKey = ${CLIENT_PRE_SHARED_KEY}
 Endpoint = ${ENDPOINT}
 AllowedIPs = ${ALLOWED_IPS}
-PersistentKeepalive = 15" >"${HOME_DIR}/${SERVER_WG_NIC}-client-${CLIENT_NAME}.conf"
+PersistentKeepalive = 5" >"${HOME_DIR}/${SERVER_WG_NIC}-client-${CLIENT_NAME}.conf"
 
 	# Add the client as a peer to the server
 	echo -e "\n### Client ${CLIENT_NAME}
 [Peer]
 PublicKey = ${CLIENT_PUB_KEY}
 PresharedKey = ${CLIENT_PRE_SHARED_KEY}
-AllowedIPs = ${CLIENT_WG_IPV4}/32,${CLIENT_WG_IPV6}/128\nPersistentKeepalive = 10" >>"/etc/wireguard/${SERVER_WG_NIC}.conf"
+AllowedIPs = ${CLIENT_WG_IPV4}/32,${CLIENT_WG_IPV6}/128\nPersistentKeepalive = 5" >>"/etc/wireguard/${SERVER_WG_NIC}.conf"
 
 	wg syncconf "${SERVER_WG_NIC}" <(wg-quick strip "${SERVER_WG_NIC}")
 
